@@ -29,7 +29,7 @@
                         models: {}
                     };
                     json.models[model] = {};
-                    json.models[model][model] =  that.getModel('message').getData();
+                    json.models[model][model] =  that.getModel(model).getData();
                     json.models[model].status = 'ok';
 
                     var html = yr.run('main', json, dataMode);
