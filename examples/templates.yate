@@ -1,0 +1,36 @@
+include "../node_modules/noscript/yate/noscript.yate"
+
+match .messages ns-view-content {
+    <div class="ns-view-container-desc">
+        apply . ns-view-collection
+    </div>
+}
+
+match .message ns-view-content {
+    message = model('message')
+    <div>
+        "#{message.id}"
+        " "
+        <div class="ns-view-bind" data-bind="message:subj" data-mode="message-subj">
+            apply / message-subj
+        </div>
+        " "
+        <div class="ns-view-bind" data-bind="message:date" data-mode="message-date">
+            apply / message-date
+        </div>
+    </div>
+}
+
+match .message ns-view-add-class {
+    " message"
+}
+
+match / message-subj {
+    message = model('message')
+    <strong>{message.subj}</strong>
+}
+
+match / message-date {
+    message = model('message')
+    message.date
+}

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+    <head>
+        <title>ns-view-bind</title>
+        <style>
+            .message {
+                box-shadow: 0 0 1px green;
+                margin: 10px;
+                padding: 10px
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="../node_modules/noscript/dist/noscript.js"></script>
+        <script src="../node_modules/yate/lib/runtime.js"></script>
+        <script src="../ns.view-bind.js"></script>
+        <script src="templates.js"></script>
+        <script>
+            $(function() {
+
+                ns.router.baseDir = location.pathname;
+
+                ns.router.routes = {
+                    route: {
+                        '/': 'app'
+                    }
+                };
+
+                ns.layout.define('app', {
+                    'app': {
+                        messages: {}
+                    }
+                });
+
+
+                ns.View.define('app');
+
+                ns.Model.define('messages', {
+                    split: {
+                        model_id: 'message',
+                        items: '.message',
+                        params: {
+                            id: '.id'
+                        }
+                    }
+                });
+
+                ns.Model.define('message', {
+                    params: {
+                        id: null
+                    }
+                });
+
+                ns.View.define('message', {
+                    models: {
+                        message: true
+                    },
+                    events: {
+                        'ns-view-init': function() {
+                            window.ololo = this;
+                        }
+                    }
+                }, ns.ViewBind);
+
+                ns.ViewCollection.define('messages', {
+                    models: {
+                        messages: true
+                    },
+                    split: {
+                        byModel: 'messages',
+                        intoViews: 'message'
+                    }
+                });
+
+                ns.Model.get('messages', { id: 1 }).insert([
+                    ns.Model.get('message', { id: 1 }).setData({ id: 1, subj: 'Lorem ipsum dolor sit amet, consectetur adipisicing', date: '10.03.2014' }),
+                    ns.Model.get('message', { id: 2 }).setData({ id: 2, subj: 'elit, sed do eiusmod tempor incididunt ut labore', date: '12.03.2014' }),
+                    ns.Model.get('message', { id: 3 }).setData({ id: 3, subj: 'et dolore magna aliqua. Ut enim ad minim veniam', date: '15.05.2014' }),
+                    ns.Model.get('message', { id: 4 }).setData({ id: 4, subj: 'quis nostrud exercitation ullamco laboris nisi ut aliquip ex', date: '18.06.2014' }),
+                    ns.Model.get('message', { id: 5 }).setData({ id: 5, subj: 'ea commodo consequat. Duis aute irure dolor in reprehenderit ', date: '21.07.2014' }),
+                ]);
+
+                ns.init();
+                ns.page.go();
+
+            });
+        </script>
+    </body>
+</html>

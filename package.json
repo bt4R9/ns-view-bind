@@ -1,0 +1,11 @@
+{
+    "name": "ns-view-bind",
+    "version": "0.0.1",
+    "description": "Native bindings for noscript",
+    "author": "Alexandr Yushkov <yua737@gmail.com>",
+    "devDependencies": {
+        "jquery": "2.1.1",
+        "noscript": "0.4.0",
+        "yate": "0.0.72"
+    }
+}
