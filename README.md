@@ -41,5 +41,5 @@ match / model-property {
 ```
 
 ```js
-ns.Model.get('model', { id: 1}).set('.property', 'b');
+ns.Model.get('model', { id: 1 }).set('.property', 'b');
 ```

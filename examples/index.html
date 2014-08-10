@@ -56,11 +56,6 @@
                 ns.View.define('message', {
                     models: {
                         message: true
-                    },
-                    events: {
-                        'ns-view-init': function() {
-                            window.ololo = this;
-                        }
                     }
                 }, ns.ViewBind);
 
@@ -84,6 +79,8 @@
 
                 ns.init();
                 ns.page.go();
+
+		ns.Model.get('message', { id: 1 }).set('.subj', 'new subj');
 
             });
         </script>
