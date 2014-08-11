@@ -52,6 +52,8 @@
 
                 this.getModel(model).off(event, callback);
             }
+            
+            delete this.bindings;
         }
     });
 
