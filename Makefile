@@ -2,7 +2,7 @@ NPM_BIN = ./node_modules/.bin
 
 all: examples/templates.js
 
-examples/templates.js: examples/templates.yate
+%.js: %.yate
 	$(NPM_BIN)/yate --output $@ $<
 
 clean:

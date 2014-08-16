@@ -15,7 +15,7 @@ match .message ns-view-content {
             apply / message-subj
         </div>
         " "
-        <div class="ns-view-bind" data-bind="message:date" data-mode="message-date">
+        <div class="ns-view-bind" data-bind="message:date" data-mode="main:message-date">
             apply / message-date
         </div>
     </div>
