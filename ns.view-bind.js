@@ -89,7 +89,7 @@
 
             this._bindigs = {};
         }
-    });
+     });
 
      ns.ViewBind = viewBind;
 
