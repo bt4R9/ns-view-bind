@@ -15,7 +15,7 @@
             this.on('ns-view-htmlinit', this.__initBindings);
             this.on('ns-view-htmldestroy', this.__destroyBindings);
 
-            this._bindigs = {};
+            this.__bindigs = {};
         },
 
         /**
@@ -31,18 +31,18 @@
          */
         __bind: function(node, event, model, module, mode) {
             var that = this;
-            this._bindigs[event] = {
+            this.__bindigs[event] = {
                 callback: function() {
                     node.innerHTML = yr.run(module, that._getViewTree({}), mode);
                 },
                 model: model
             };
 
-            this.getModel(model).on(event, this._bindigs[event].callback);
+            this.getModel(model).on(event, this.__bindigs[event].callback);
         },
 
         /**
-         * Находит и парсит бандинги, определенные в разметки.
+         * Находит и парсит бандинги, определенные в разметке.
          *
          * @fires View.__bind
          * @private
@@ -80,14 +80,14 @@
          * @private
          */
         __destroyBindings: function() {
-            for (var event in this._bindigs) {
-                var bind = this._bindigs[event];
+            for (var event in this.__bindigs) {
+                var bind = this.__bindigs[event];
                 var model = bind.model;
                 var callback = bind.callback;
                 this.getModel(model).off(event, callback);
             }
 
-            this._bindigs = {};
+            this.__bindigs = {};
         }
      });
 
